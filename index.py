@@ -47,11 +47,11 @@ def main_handler(event, context):
             {
                 "msgtype": "markdown",
                 "markdown": {
-                    "content": "**方案咨询问卷有新数据了** \n 姓名：%s \n 微信：%s \n 电话：%s \n 邮箱：%s \n 公司：%s \n 职位：%s \n 需求：%s \n 渠道：%s"
+                    "content": "**方案咨询问卷有新数据了** \n 姓名：%s \n 微信：%s \n 电话：%s \n 邮箱：%s \n 公司：%s \n 职位：%s \n 需求：%s \n 方案：%s \n 渠道：%s"
                 }
             }
             '''
-    content = template % (name, wechat, phone, email, company, title, requirement, channel)
+    content = template % (name, wechat, phone, email, company, title, requirement, solution, channel)
     r = requests.post('https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=81ef7bfa-0ff4-4850-86df-a8e272c8cafe',
                       data=content.encode('utf-8'))
     print(r.status_code)
