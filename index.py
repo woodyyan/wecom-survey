@@ -74,22 +74,22 @@ def main_handler(event, context):
 
 
 def create_trello_card(survey, name):
-    headers = {'Authorization': AUTHORIZATION, 'Accept': 'application/json'}
-    template = '''{
-      "desc": "%s",
-      "idBoard": "61a9f4eff4d82d5399d26e70",
-      "idList": "61ae07345439df8afcbb15f2",
-      "idLabels": [
-        "61a9f4ef33ccc35e9209fc75",
-        "61f14b9893957c737f7e8d8e"
-      ],
-      "name": "方案咨询 - %s"
-    }'''
-    content = template % (survey, name)
+    headers = {'Authorization': AUTHORIZATION, 'Accept': 'application/json', 'Content-Type': 'application/json'}
+    template = {
+        "desc": survey,
+        "idBoard": "61a9f4eff4d82d5399d26e70",
+        "idList": "61ae07345439df8afcbb15f2",
+        "idLabels": [
+            "61a9f4ef33ccc35e9209fc75",
+            "61f14b9893957c737f7e8d8e"
+        ],
+        "name": "方案咨询 - %s" % name
+    }
+    content = json.dumps(template)
     print("创建内容：")
     print(content)
     r = requests.post('https://api.trello.com/1/cards?idList=61ae07345439df8afcbb15f2',
-                      headers=headers, data=content.encode('utf-8'))
+                      headers=headers, data=content)
     print("创建结果：")
     print(r.status_code)
     print(r.content)
