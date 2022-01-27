@@ -49,13 +49,13 @@ def main_handler(event, context):
             for option in question['options']:
                 channel += option['text'] + ';'
 
-    survey = '姓名：%s \n 微信：%s \n 电话：%s \n 邮箱：%s \n 公司：%s \n 职位：%s \n 需求：%s \n 方案：%s \n 渠道：%s' % (
+    survey = '姓名：%s \\n 微信：%s \\n 电话：%s \\n 邮箱：%s \\n 公司：%s \\n 职位：%s \\n 需求：%s \\n 方案：%s \\n 渠道：%s' % (
         name, wechat, phone, email, company, title, requirement, solution, channel)
     template = '''
             {
                 "msgtype": "markdown",
                 "markdown": {
-                    "content": "**方案咨询问卷有新数据了** \n %s"
+                    "content": "**方案咨询问卷有新数据了** \\n %s"
                 }
             }
             '''
